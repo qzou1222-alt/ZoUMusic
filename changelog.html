@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>ChangeLog - ZoUMusic</title>
+        <style>
+            .card {
+                position: relative;
+            }
+        
+            .badge {
+                position: absolute;
+                top: 0;
+                left: 0;
+                text-decoration: none;
+                font-size: 32px;
+                border: 2px solid red;
+                padding: 4px 12px;
+                border-radius: 8px;
+                color: black;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="card">
+            <a href="index.html" class="badge" id="backButton">←</a>
+        </div>
+        <br><br><br>
+        <select id="language" onchange="changeLanguage()">
+            <option value="en">English</option>
+            <option value="zh-cn">简体中文</option>
+        </select>
+        <div id="en">
+            <h1>Changelog</h1>
+            <h2>2026.10.16 - 1.0.0</h2>
+            <h3>Initial Release</h3>
+            <p>· Added a link to the artist's profile page.</p>
+            <p>· Added an artist biography.</p>
+            <p>· Added the latest notifications.</p>
+            <h2>2026.10.18 - 1.1.0</h2>
+            <h3>Language Update</h3>
+            <p>· Added English and Japanese versions of the homepage.</p>
+            <p>· Added an option to switch languages.</p>
+            <h2>2026.10.18 - 1.2.0</h2>
+            <h3>Navigation Update</h3>
+            <p>· Added an entry for the License.</p>
+            <p>· Added an entry for the ChangeLog.</p>
+            <p>· Added 404 page.</p>
+        </div>
+
+        <div id="zh-cn" style="display: none;">
+            <h1>更新日志</h1>
+            <h2>2026.10.16 - 1.0.0</h2>
+            <h3>初版</h3>
+            <p>· 添加了前往音乐人主页的链接。</p>
+            <p>· 添加了音乐人简介。</p>
+            <p>· 添加了最新通知。</p>
+            <h2>2026.10.18 - 1.1.0</h2>
+            <h3>语言更新</h3>
+            <p>· 添加了英文版和日文版主页。</p>
+            <p>· 添加了语言切换入口。</p>
+            <h2>2026.10.18 - 1.2.0</h2>
+            <h3>导航更新</h3>
+            <p>· 添加了License入口。</p>
+            <p>· 添加了ChangeLog入口。</p>
+            <p>· 添加了404页面。</p>
+        </div>
+
+        <script>
+            const params = new URLSearchParams(window.location.search);
+            const initialLang = params.get("lang");
+            
+            document.getElementById("language").value =
+                initialLang === "zh-cn" ? "zh-cn" : "en";
+            
+            changeLanguage();
+            
+            function changeLanguage() {
+                const lang = document.getElementById("language").value;
+            
+                document.getElementById("en").style.display =
+                    lang === "en" ? "block" : "none";
+            
+                document.getElementById("zh-cn").style.display =
+                    lang === "zh-cn" ? "block" : "none";
+            
+                document.documentElement.lang = lang;
+                const url = new URL(window.location.href);
+                url.searchParams.set("lang", lang);
+                history.replaceState(null, "", url);
+                document.getElementById("backButton").href =
+                lang === "zh-cn"
+                    ? "index.html"
+                    : "index-en.html";
+                        }
+        </script>
+    </body>
+</html>
