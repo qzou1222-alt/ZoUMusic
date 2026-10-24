@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <link href="/ZoUMusic/images/ZoU.png" rel="icon" type="image/png">
         <meta charset="UTF-8">
         <title>VictorZou Musician Web - ZoUMusic</title>
         <style> .aqua-button {
@@ -21,9 +22,18 @@
         }
         .border-text-red {
             border: 2px solid red;
+            padding: 10px;
+            border-radius: 8px;
+        }
+        .no-txt-dec {
+            text-decoration: none;
         }
         .left   { text-align: left; }
         .center { text-align: center; }
+        .imgcenter {
+            display: block;
+            margin: auto;
+        }
         .right  { text-align: right; }
         .card {
             position: relative;
@@ -37,6 +47,12 @@
         </style>
     </head>
     <body>
+        <a href="#footer" class="no-txt-dec">Footer</a>
+        <!--&nbsp;|&nbsp;
+        <a href="creator/home.html" target="_blank" class="no-txt-dec">Creator Homepage</a>-->
+        &nbsp;|&nbsp;
+        <a href="https://github.com/qzou1222-alt/ZoUMusic" target="_blank" class="no-txt-dec">Github</a>
+        <hr>
         <div class="card">
             <h1>Victor Zou | Official Musician Website</h1>
             <a href="changelanguageen.html" class="badge">*Change Language</a>
@@ -46,8 +62,21 @@
         <a href="https://music.163.com/#/artist?id=128604818" target="_blank" class="aqua-button">Artist Home↗</a>
         <br>
         <p class="border-text-red"><b>About Me</b><br><br>I'm Victor Zou, I want to do a bit of everything! <br>When it comes to music, I just create whatever comes to mind—or whatever I happen to dream up! <br>I mostly use LMMS for my compositions. <br>And sometimes… well, get ready for some comedy!</p>
-        <p class="border-text-red"><b>News</b><br><br>Album《<a href="https://music.163.com/#/album?id=403438033" target="_blank">崩坏的世界</a>》new song《<a href="https://music.163.com/#/song?id=3447067395" target="_blank">灾难</a>》is coming!</p>
-        <footer>
+        <div class="border-text-red">
+            <p><b>News</b><br><br>Album《<a href="https://music.163.com/#/album?id=403438033" target="_blank">崩坏的世界</a>》new song《<a href="https://music.163.com/#/song?id=3447067395" target="_blank">灾难</a>》is coming!</p>
+            <a href="newnotices.html">View all notifications→</a>
+        </div>
+        <br>
+        <div class="border-text-red">
+            <p><b>Representative Works</b><br></p>
+            <li>熟悉的陌生人 (Familiar Strangers)</li>
+            <li>友谊 (Friendship)</li>
+            <li>轻松的家 (A Relaxing Home)</li>
+            <li>灾难 (Disaster)</li>
+            <br>
+            <a href="mysongs.html">More Works</a>
+        </div>
+        <footer id="footer">
             <hr>
             <p class="center">
                 <a href="changelog.html?lang=en">ChangeLog</a>
@@ -57,6 +86,9 @@
             <p class="center">
                 © 2026 VictorZou · ZoUMusic
             </p>
+            <img src="./images/ZoU.png" class="imgcenter">
+            <br><br><br>
+            <p>Had a problem? <a class="no-txt-dec" href="https://github.com/qzou1222-alt/ZoUMusic/issues" target="_blank">Report an issue</a></p>
         </footer>
     </body>
 </html>

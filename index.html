@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
     <head>
+        <link href="/ZoUMusic/images/ZoU.png" rel="icon" type="image/png">
         <meta charset="UTF-8">
         <title>小邹邹简单滴音乐网站 ZoUMusic</title>
         <style> .aqua-button {
@@ -13,6 +14,9 @@
             display: inline-block;
             text-decoration: none;
         }
+        .no-txt-dec {
+            text-decoration: none;
+        }
         .aqua-button:hover {
             background-color: rgb(63, 209, 214);
             color: black;
@@ -21,9 +25,15 @@
         }
         .border-text-red {
             border: 2px solid red;
+            padding: 10px;
+            border-radius: 8px;
         }
         .left   { text-align: left; }
         .center { text-align: center; }
+        .imgcenter {
+            display: block;
+            margin: auto;
+        }
         .right  { text-align: right; }
         .card {
             position: relative;
@@ -37,6 +47,12 @@
         </style>
     </head>
     <body>
+        <a href="#footer" class="no-txt-dec">底部栏</a>
+        <!--&nbsp;|&nbsp;
+        <a href="creator/home.html" target="_blank" class="no-txt-dec">联合创作者中心</a>-->
+        &nbsp;|&nbsp;
+        <a href="https://github.com/qzou1222-alt/ZoUMusic" target="_blank" class="no-txt-dec">Github</a>
+        <hr>
         <div class="card">
             <h1>邹ZoU音乐官网</h1>
             <a href="changelanguagezhcn.html" class="badge">*切换语言</a>
@@ -46,9 +62,24 @@
         <a href="https://music.163.com/#/artist?id=128604818" target="_blank" class="aqua-button">音乐人主页↗</a>
         <br>
         <p class="border-text-red"><b>音乐人简介</b><br><br>我乃小邹邹，啥都想做。<br>音乐嘛，想到什么就做什么，梦到什么玩什么~<br>大部分情况下用 LMMS 做曲。<br>有时候嘛……搞笑我来啦！</p>
-        <p class="border-text-red"><b>最新通知</b><br><br>专辑《<a href="https://music.163.com/#/album?id=403438033" target="_blank">崩坏的世界</a>》新歌曲《<a href="https://music.163.com/#/song?id=3447067395" target="_blank">灾难</a>》上线</p>
-        <footer>
+        <div class="border-text-red">
+            <p><b>最新通知</b><br><br>专辑《<a href="https://music.163.com/#/album?id=403438033" target="_blank">崩坏的世界</a>》新歌曲《<a href="https://music.163.com/#/song?id=3447067395" target="_blank">灾难</a>》上线</p>
+            <!--<a href="newnotices.html" target="_blank">查看所有通知→</a>-->
+        </div>
+        <br>
+        <div class="border-text-red">
+            <p><b>代表作品</b><br></p>
+            <li>熟悉的陌生人</li>
+            <li>友谊</li>
+            <li>轻松的家</li>
+            <li>灾难</li>
+            <br>
+            <a href="mysongs.html" target="_blank">更多作品</a>
+        </div>
+        <footer id="footer">
+            
             <hr>
+            <h3 class="center" >底部栏</h3>
             <p class="center">
                 <a href="changelog.html?lang=zh-cn">更新日志</a>
                 |
@@ -57,6 +88,9 @@
             <p class="center">
                 © 2026 小邹邹 · ZoUMusic
             </p>
+            <img src="./images/ZoU.png" class="imgcenter">
+            <br><br><br>
+            <p>遇到问题？ <a class="no-txt-dec" href="https://github.com/qzou1222-alt/ZoUMusic/issues" target="_blank">去反馈</a></p>
         </footer>
     </body>
 </html>
