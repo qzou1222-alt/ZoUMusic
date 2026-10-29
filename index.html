@@ -4,9 +4,35 @@
         <link href="/ZoUMusic/images/ZoU.png" rel="icon" type="image/png">
         <meta charset="UTF-8">
         <title>小邹邹简单滴音乐网站 ZoUMusic</title>
-        <style> .aqua-button {
+        <style> 
+        .dark-background {
+            background-color: black;
+            color: white;
+        } 
+        .bright-background {
+            background-color: white;
+        }
+        .brightlink {
+            color: lightblue;
+            text-decoration-color: lightblue;
+        }
+        .brighttext {
+            color: white;
+            text-decoration-color: white;
+        }
+        .aqua-button {
             background-color: aqua;
             color: black;
+            border-radius: 8px;
+            text-align: center;
+            padding: 8px;
+            font-size: larger;
+            display: inline-block;
+            text-decoration: none;
+        }
+        .darkslateblue-button {
+            background-color: darkslateblue;
+            color: white;
             border-radius: 8px;
             text-align: center;
             padding: 8px;
@@ -46,12 +72,14 @@
         }
         </style>
     </head>
-    <body>
+    <body id="body">
         <a href="#footer" class="no-txt-dec">底部栏</a>
         <!--&nbsp;|&nbsp;
         <a href="creator/home.html" target="_blank" class="no-txt-dec">联合创作者中心</a>-->
         &nbsp;|&nbsp;
         <a href="https://github.com/qzou1222-alt/ZoUMusic" target="_blank" class="no-txt-dec">Github</a>
+        &nbsp;|&nbsp;
+        <a href="setting/userlikesetting.html" class="no-txt-dec">个性化设置</a>
         <hr>
         <div class="card">
             <h1>邹ZoU音乐官网</h1>
@@ -59,7 +87,7 @@
         </div>
         
         <h2>ZoUMusic</h2>
-        <a href="https://music.163.com/#/artist?id=128604818" target="_blank" class="aqua-button">音乐人主页↗</a>
+        <a href="https://music.163.com/#/artist?id=128604818" target="_blank" class="aqua-button" id="artistlink">音乐人主页↗</a>
         <br>
         <p class="border-text-red"><b>音乐人简介</b><br><br>我乃小邹邹，啥都想做。<br>音乐嘛，想到什么就做什么，梦到什么玩什么~<br>大部分情况下用 LMMS 做曲。<br>有时候嘛……搞笑我来啦！</p>
         <div class="border-text-red">
@@ -92,5 +120,22 @@
             <br><br><br>
             <p>遇到问题？ <a class="no-txt-dec" href="https://github.com/qzou1222-alt/ZoUMusic/issues" target="_blank">去反馈</a></p>
         </footer>
+        <script>
+            const bgmode = localStorage.getItem("bgmode")
+            const body = document.getElementById("body")
+            const artistlink = document.getElementById("artistlink")
+            const links = document.getElementsByTagName("a")
+            const texts = document.querySelectorAll("p, h1, h2, li, b")
+            if (bgmode=="dark"){
+                body.className = "dark-background"
+                for (const link of links){
+                    link.classList.add("brightlink")
+                }
+                for (const text of texts){
+                    text.classList.add("brighttext")
+                }
+                artistlink.className = "darkslateblue-button"
+            }
+        </script>
     </body>
 </html>

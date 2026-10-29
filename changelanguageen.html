@@ -8,6 +8,31 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>ZoUMusic - Select Language</title>
         <style>
+            .dark-background {
+                background-color: black;
+                color: white;
+            } 
+            .bright-background {
+                background-color: white;
+            }
+            .brightlink {
+                color: lightblue;
+                text-decoration-color: lightblue;
+            }
+            .brighttext {
+                color: white;
+                text-decoration-color: white;
+            }
+            .darkslateblue-button {
+                background-color: darkslateblue;
+                color: white;
+                border-radius: 8px;
+                text-align: center;
+                padding: 8px;
+                font-size: larger;
+                display: inline-block;
+                text-decoration: none;
+            }
             body {
                 font-family: Arial, sans-serif;
                 text-align: center;
@@ -68,5 +93,22 @@
                 });
             </script>
         </div>
+        <script>
+            const bgmode = localStorage.getItem("bgmode")
+            const body = document.body
+            const links = document.getElementsByTagName("a")
+            const texts = document.querySelectorAll("h1, label")
+            const switchLanguage = document.getElementById("switch-language")
+            if (bgmode=="dark"){
+                body.className = "dark-background"
+                for (const link of links){
+                    link.classList.add("brightlink")
+                }
+                for (const text of texts){
+                    text.classList.add("brighttext")
+                }
+                switchLanguage.className = "darkslateblue-button"
+            }
+        </script>
     </body>
 </html>

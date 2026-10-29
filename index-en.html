@@ -4,7 +4,33 @@
         <link href="/ZoUMusic/images/ZoU.png" rel="icon" type="image/png">
         <meta charset="UTF-8">
         <title>VictorZou Musician Web - ZoUMusic</title>
-        <style> .aqua-button {
+        <style>  
+        .dark-background {
+            background-color: black;
+            color: white;
+        } 
+        .bright-background {
+            background-color: white;
+        }
+        .brightlink {
+            color: lightblue;
+            text-decoration-color: lightblue;
+        }
+        .brighttext {
+            color: white;
+            text-decoration-color: white;
+        }
+        .darkslateblue-button {
+            background-color: darkslateblue;
+            color: white;
+            border-radius: 8px;
+            text-align: center;
+            padding: 8px;
+            font-size: larger;
+            display: inline-block;
+            text-decoration: none;
+        }
+        .aqua-button {
             background-color: aqua;
             color: black;
             border-radius: 8px;
@@ -46,12 +72,14 @@
         }
         </style>
     </head>
-    <body>
+    <body id="body">
         <a href="#footer" class="no-txt-dec">Footer</a>
         <!--&nbsp;|&nbsp;
         <a href="creator/home.html" target="_blank" class="no-txt-dec">Creator Homepage</a>-->
         &nbsp;|&nbsp;
         <a href="https://github.com/qzou1222-alt/ZoUMusic" target="_blank" class="no-txt-dec">Github</a>
+        &nbsp;|&nbsp;
+        <a href="setting/userlikesetting.html" class="no-txt-dec">Personalized Settings</a>
         <hr>
         <div class="card">
             <h1>Victor Zou | Official Musician Website</h1>
@@ -59,7 +87,7 @@
         </div>
         
         <h2>ZoUMusic</h2>
-        <a href="https://music.163.com/#/artist?id=128604818" target="_blank" class="aqua-button">Artist Home↗</a>
+        <a href="https://music.163.com/#/artist?id=128604818" target="_blank" class="aqua-button" id="artistlink">Artist Home↗</a>
         <br>
         <p class="border-text-red"><b>About Me</b><br><br>I'm Victor Zou, I want to do a bit of everything! <br>When it comes to music, I just create whatever comes to mind—or whatever I happen to dream up! <br>I mostly use LMMS for my compositions. <br>And sometimes… well, get ready for some comedy!</p>
         <div class="border-text-red">
@@ -90,5 +118,22 @@
             <br><br><br>
             <p>Had a problem? <a class="no-txt-dec" href="https://github.com/qzou1222-alt/ZoUMusic/issues" target="_blank">Report an issue</a></p>
         </footer>
+        <script>
+            const bgmode = localStorage.getItem("bgmode")
+            const body = document.getElementById("body")
+            const links = document.getElementsByTagName("a")
+            const artistlink = document.getElementById("artistlink")
+            const texts = document.querySelectorAll("p, h1, h2, li, b")
+            if (bgmode=="dark"){
+                body.className = "dark-background"
+                for (const link of links){
+                    link.classList.add("brightlink")
+                }
+                for (const text of texts){
+                    text.classList.add("brighttext")
+                }
+                artistlink.className = "darkslateblue-button"
+            }
+        </script>
     </body>
 </html>

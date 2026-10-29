@@ -4,9 +4,35 @@
         <link href="/ZoUMusic/images/ZoU.png" rel="icon" type="image/png">
         <meta charset="UTF-8">
         <title>ゾウゾウ音楽公式サイト ZoUMusic</title>
-        <style> .aqua-button {
+        <style>  
+        .dark-background {
+            background-color: black;
+            color: white;
+        } 
+        .bright-background {
+            background-color: white;
+        }
+        .brightlink {
+            color: lightblue;
+            text-decoration-color: lightblue;
+        }
+        .brighttext {
+            color: white;
+            text-decoration-color: white;
+        }
+        .aqua-button {
             background-color: aqua;
             color: black;
+            border-radius: 8px;
+            text-align: center;
+            padding: 8px;
+            font-size: larger;
+            display: inline-block;
+            text-decoration: none;
+        }
+        .darkslateblue-button {
+            background-color: darkslateblue;
+            color: white;
             border-radius: 8px;
             text-align: center;
             padding: 8px;
@@ -46,12 +72,14 @@
         }
         </style>
     </head>
-    <body>
+    <body id="body">
         <a href="#footer" class="no-txt-dec">フッター</a>
         <!--&nbsp;|&nbsp;
         <a href="creator/home.html" target="_blank" class="no-txt-dec">共同クリエイターセンター</a>-->
         &nbsp;|&nbsp;
         <a href="https://github.com/qzou1222-alt/ZoUMusic" target="_blank" class="no-txt-dec">Github</a>
+        &nbsp;|&nbsp;
+        <a href="setting/userlikesetting.html" class="no-txt-dec">パーソナライズ設定</a>
         <hr>
         <div class="card">
             <h1>ゾウゾウ音楽公式サイト</h1>
@@ -59,7 +87,7 @@
         </div>
         
         <h2>ZoUMusic</h2>
-        <a href="https://music.163.com/#/artist?id=128604818" target="_blank" class="aqua-button">ミュージシャンページ↗</a>
+        <a href="https://music.163.com/#/artist?id=128604818" target="_blank" class="aqua-button" id="artistlink">ミュージシャンページ↗</a>
         <br>
         <p class="border-text-red"><b>ミュージシャン・プロフィール</b><br><br>シャオ・ゾウゾウです！何でもやってみたい派。<br>音楽に関しては、思いついたものを作ったり、夢に出てきたものを形にしたり……<br>基本的にはLMMSで作曲しています。<br>時々……おふざけモード全開になることも！</p>
         <div class="border-text-red">
@@ -90,5 +118,22 @@
             <br><br><br>
             <p>問題が発生しましたか？ <a class="no-txt-dec" href="https://github.com/qzou1222-alt/ZoUMusic/issues" target="_blank">問題を報告する</a></p>
         </footer>
+        <script>
+            const bgmode = localStorage.getItem("bgmode")
+            const body = document.getElementById("body")
+            const artistlink = document.getElementById("artistlink")
+            const links = document.getElementsByTagName("a")
+            const texts = document.querySelectorAll("p, h1, h2, li, b")
+            if (bgmode=="dark"){
+                body.className = "dark-background"
+                for (const link of links){
+                    link.classList.add("brightlink")
+                }
+                for (const text of texts){
+                    text.classList.add("brighttext")
+                }
+                artistlink.className = "darkslateblue-button"
+            }
+        </script>
     </body>
 </html>

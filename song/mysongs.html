@@ -6,10 +6,36 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>小邹邹的全部歌曲 - ZoUMusic</title>
         <style>
+            .dark-background {
+                background-color: black;
+                color: white;
+            } 
+            .bright-background {
+                background-color: white;
+            }
+            .brightlink {
+                color: lightblue;
+                text-decoration-color: lightblue;
+            }
+            .brighttext {
+                color: white;
+                text-decoration-color: white;
+            }
             .tablelooks {
                 border: 2px solid grey;
                 background-color: seashell;
                 border-collapse: collapse;
+                padding: 10px;
+            }
+            .tablelooksdark {
+                border: 2px solid grey;
+                background-color: rgb(199, 83, 0);
+                border-collapse: collapse;
+                padding: 10px;
+            }
+            .tablelooksdark th,
+            .tablelooksdark td {
+                border: 2px solid rgb(209, 209, 209);
                 padding: 10px;
             }
             .tablelooks th,
@@ -26,7 +52,7 @@
             }
         </style>
     </head>
-    <body>
+    <body id="body">
         <form action="search.html">
             <input placeholder="请输入搜索内容" id="search-input" name="q" minlength="1">
             <button type="submit">搜索</button>
@@ -85,5 +111,25 @@
         <h2>数字专辑</h2>
         <img src="/ZoUMusic/images/NothingZoU.png" class="imgcenter">
         <p class="center">啊哦~这里什么都没有</p>
+        <script>
+            const texts = document.querySelectorAll("p, td, th, h1, h2, h3, b")
+            const body = document.body
+            const links = document.getElementsByTagName("a")
+            const bgmode = localStorage.getItem("bgmode")
+            const tables = document.getElementsByTagName("table")
+            if (bgmode=="dark"){
+                body.className = "dark-background"
+                for (const link of links){
+                    link.classList.add("brightlink")
+                }
+                for (const text of texts){
+                    text.classList.add("brighttext")
+                }
+                for (const table of tables){
+                    table.className = "tablelooksdark"
+                }
+            }
+            
+        </script>
     </body>
 </html>

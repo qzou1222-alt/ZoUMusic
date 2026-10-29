@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>正在保存你的数据…… - ZoUMusic</title>
+
+        <style>
+            .dark-background {
+                background-color: black;
+                color: white;
+            } 
+            .brighttext {
+                color: white;
+                text-decoration-color: white;
+            }
+            body {
+                font-family: Arial, sans-serif;
+                text-align: center;
+                padding-top: 160px;
+            }
+            @keyframes spin {
+                from {
+                    rotate: 0deg;
+                }
+                to {
+                    rotate: 360deg;
+                }
+            }
+            .spinner {
+                width: 64px;
+                height: 64px;
+                border: 8px solid rgb(156, 156, 156);
+                border-radius: 64px;
+                border-top-color: rgb(0, 191, 255);
+                animation: spin 1s infinite;
+                margin: auto;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="spinner">
+            <p>⌛️</p>
+            
+        </div>
+        <br><br>
+        <h2>正在保存你的数据……</h2>
+        <h3>这可能会需要一些时间。</h3>
+        <script>
+            const body = document.body
+            const texts = document.querySelectorAll("p, h3, h2")
+            const bgmode = new URLSearchParams(window.location.search).get("bgmode");
+            let ok = true;
+            
+            if (bgmode==="bright") {
+                localStorage.setItem("bgmode", "bright");
+                
+            }
+            else if (bgmode==="dark") {
+                localStorage.setItem("bgmode", "dark");
+                for (const text of texts){
+                    text.classList.add("brighttext")
+                }
+                body.className = "dark-background"
+            }
+            else {
+                ok = false
+                window.location.href="/ZoUMusic/400.html";
+            }
+            if (ok) {
+                setTimeout(function(){
+                    window.location.href="/ZoUMusic/index.html"
+                }, 3000)
+            }
+        </script>
+    </body>
+</html>

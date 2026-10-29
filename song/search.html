@@ -6,6 +6,21 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>查找结果 - ZoUMusic</title>
         <style>
+            .dark-background {
+                background-color: black;
+                color: white;
+            } 
+            .bright-background {
+                background-color: white;
+            }
+            .brightlink {
+                color: lightblue;
+                text-decoration-color: lightblue;
+            }
+            .brighttext {
+                color: white;
+                text-decoration-color: white;
+            }
             .center {
                 text-align: center;
             }
@@ -16,7 +31,7 @@
         </style>
     </head>
     <body>
-        <h1>查询成功！</h1>
+        <h1 id="ok-or-error">查询成功！</h1>
         <h2 id="search-title"></h2>
         <div id="no-result" hidden>
             <img src="/ZoUMusic/images/NothingZoU-128x128.png" class="imgcenter">
@@ -27,38 +42,59 @@
         <script>
             const query = new URLSearchParams(window.location.search).get("q")
             if (query == null || !(query.trim())){
-                window.location.href="/ZoUMusic/index.html"
+                window.location.href="/ZoUMusic/400.html"
             }
             const searchtitle = document.getElementById("search-title")
             const noresult = document.getElementById("no-result")
             const songs = document.getElementById("songs")
+            const okOrError = document.getElementById("ok-or-error")
+            const bgmode = localStorage.getItem("bgmode")
+            const body = document.body
+            const links = document.getElementsByTagName("a")
+            const texts = document.querySelectorAll("p, h1, h2, li, b")
+            if (bgmode=="dark"){
+                body.className = "dark-background"
+                for (const link of links){
+                    link.classList.add("brightlink")
+                }
+                for (const text of texts){
+                    text.classList.add("brighttext")
+                }
+            }
             fetch("allsongs.json")
-            .then(response => response.json())
-            .then(allsongs => {
-                fetch("getIdFromName.json")
-                    .then(response => response.json())
-                    .then(ids => {
-                        const matchsongs = []
-                        for (const s of allsongs){
-                            if (s.includes(query)){
-                                matchsongs.push(s)
-                                const songlink = document.createElement("a")
-                                songlink.textContent = s
-                                songlink.href = `mysongs.html#song-${ids[s]}`
-                                songs.appendChild(songlink)
-                                songs.appendChild(document.createElement("br"))
+                .then(response => response.json())
+                .then(allsongs => {
+                    fetch("getIdFromName.json")
+                        .then(response => response.json())
+                        .then(ids => {
+                            try {
+                                const matchsongs = []
+                                for (const s of allsongs){
+                                    if (s.includes(query)){
+                                        matchsongs.push(s)
+                                        const songlink = document.createElement("a")
+                                        songlink.textContent = s
+                                        songlink.href = `mysongs.html#song-${ids[s]}`
+                                        songs.appendChild(songlink)
+                                        songs.appendChild(document.createElement("br"))
+                                        if (bgmode == "dark"){songlink.className = "brightlink"}
+                
+                                    }
+                                }
+                                    searchtitle.textContent=`已匹配到以下包含“${query}”的歌曲，共${matchsongs.length}首`
+                                if (matchsongs.length===0){
+                                    searchtitle.hidden=true
+                                    songs.hidden=true
+                                    noresult.hidden=false
+                                }
+                            }
+                            catch{
+                                okOrError.textContent = "哎呀……查询时出了点小状况"
                             }
                         }
-                            searchtitle.textContent=`已匹配到以下包含“${query}”的歌曲，共${matchsongs.length}首`
-                        if (matchsongs.length===0){
-                            searchtitle.hidden=true
-                            songs.hidden=true
-                            noresult.hidden=false
-                        }
-
-                    }
-                )
-            })
+                    )
+                })
+            
         </script>
     </body>
 </html>

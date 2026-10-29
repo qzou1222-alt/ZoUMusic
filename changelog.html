@@ -5,9 +5,32 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>ChangeLog - ZoUMusic</title>
-        <style>
+        <style> 
+            .dark-background {
+                background-color: black;
+                color: white;
+            }
+            .brightlink {
+                color: lightblue;
+                text-decoration-color: lightblue;
+            }
+            .brighttext {
+                color: white;
+                text-decoration-color: white;
+            }
             .card {
                 position: relative;
+            }
+            .brightbadge {
+                position: absolute;
+                top: 0;
+                left: 0;
+                text-decoration: none;
+                font-size: 32px;
+                border: 2px solid lightgreen;
+                padding: 4px 12px;
+                border-radius: 8px;
+                color: white;
             }
         
             .badge {
@@ -59,6 +82,11 @@
             <h2>2026.10.25 - 1.3.1</h2>
             <h3>Search Update</h3>
             <p>· Added song search support.</p>
+            <h2>2026.10.29 - 1.4.0</h2>
+            <h3>Theme Update</h3>
+            <p>· Added a 400 error page.</p>
+            <p>· Added an entry point for personalized settings.</p>
+            <p>· Added a dark theme.</p>
         </div>
 
         <div id="zh-cn" style="display: none;">
@@ -88,6 +116,11 @@
             <h2>2026.10.25 - 1.3.1</h2>
             <h3>搜索更新</h3>
             <p>· 添加了对歌曲搜索的支持。</p>
+            <h2>2026.10.29 - 1.4.0</h2>
+            <h3>主题更新</h3>
+            <p>· 添加了400页面。</p>
+            <p>· 添加了个性化设置页面的入口。</p>
+            <p>· 添加了暗色主题。</p>
             
         </div>
 
@@ -118,6 +151,23 @@
                     ? "index.html"
                     : "index-en.html";
                         }
+        </script>
+        <script>
+            const bgmode = localStorage.getItem("bgmode")
+            const body = document.body
+            const links = document.getElementsByTagName("a")
+            const texts = document.querySelectorAll("p, h1, h2, h3, b")
+            const backButton = document.getElementById("backButton")
+            if (bgmode=="dark"){
+                body.className = "dark-background"
+                for (const link of links){
+                    link.classList.add("brightlink")
+                }
+                for (const text of texts){
+                    text.classList.add("brighttext")
+                }
+                backButton.className = "brightbadge"
+            }
         </script>
     </body>
 </html>
