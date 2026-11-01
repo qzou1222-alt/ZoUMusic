@@ -125,6 +125,17 @@
 
             getStats();
         </script>
+        <script>
+            const bgmode = localStorage.getItem("bgmode")
+            const body = document.body
+            const texts = document.querySelectorAll("p, h1, h2, b, h3")
+            if (bgmode=="dark"){
+                body.className = "dark-background"
+                for (const text of texts){
+                    text.classList.add("brighttext")
+                }
+            }
+        </script>
         <script src="traffic/traffic.js"></script>
     </body>
 </html>
