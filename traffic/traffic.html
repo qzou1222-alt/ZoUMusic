@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>数据中心 - ZoUMusic</title>
+        <style>
+            .page {
+                display: flex; 
+                justify-content: space-between;
+                margin: 0;
+            }
+            .dark-background {
+                background-color: black;
+                color: white;
+            } 
+            .line {
+                border-radius: 8px;
+                background-color: cadetblue;
+                display: flex;
+                height: 16px;
+            }
+            .brighttext {
+                color: white;
+                text-decoration-color: white;
+            }
+            body {
+                font-family: Arial, sans-serif;
+            }
+            .center {
+                text-align: center;
+            }
+            .surface {
+                border: 2px solid rgb(194, 194, 194);
+                border-radius: 8px;
+                text-align: center;
+                padding: 16px;
+                font-size: larger;
+                display: inline-block;
+                text-decoration: none;
+            }
+            @keyframes spin {
+                from {
+                    rotate: 0deg;
+                }
+                to {
+                    rotate: 360deg;
+                }
+            }
+            .spinner {
+                width: 64px;
+                height: 64px;
+                border: 8px solid rgb(156, 156, 156);
+                border-radius: 64px;
+                border-top-color: rgb(0, 191, 255);
+                animation: spin 1s infinite;
+                margin: auto;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>流量数据</h1>
+        <br><br><br>
+        <div class="center">
+            
+            <div class="surface">
+                <h2 id="trafficAllTitle">本网站总流量</h2>
+                <p id="trafficAll" hidden></p>
+                <div class="spinner" id="spinner"></div>
+                <br>
+                <b id="loading">正在加载流量数据……</b>
+            </div>
+        </div>
+        <hr>
+        <div id="pageStats">
+            <h2 class="center">各网页流量</h2>
+        </div>
+        <script>
+            const trafficAll = document.getElementById("trafficAll")
+            const spinner = document.getElementById("spinner")
+            const loading = document.getElementById("loading")
+            const pageStats = document.getElementById("pageStats")
+            async function getStats() {
+                try {
+                    const response = await fetch(
+                        "https://zoumusictraf.qzou1222.workers.dev/stats"
+                    );
+                    if (!response.ok) {
+                        throw new Error(`HTTP Error: ${response.status}`);
+                    }
+                    const data = await response.json();
+                    const pages = data.pages
+                    const maxPageTraffic = Math.max(...Object.values(pages))
+                    loading.hidden = true
+                    trafficAll.textContent = "共" + data["totalViews"] + "次浏览";
+                    trafficAll.hidden = false;
+                    for (const array of Object.entries(pages)){
+                        const name = array[0]
+                        const traffic = array[1]
+                        const nametxt = document.createElement("p")
+                        const traffictxt = document.createElement("p")
+                        const div = document.createElement("div")
+                        div.className = "page"
+                        nametxt.textContent = name
+                        traffictxt.textContent = `${traffic}次浏览`
+                        div.appendChild(nametxt)
+                        div.appendChild(traffictxt)
+                        const percentage = traffic / maxPageTraffic
+                        const line = document.createElement("div")
+                        line.className = "line"
+                        line.style.width = `${percentage*100}%`
+                        line.title = `${traffic}次浏览`
+                        pageStats.appendChild(div)
+                        pageStats.appendChild(line)
+                        pageStats.appendChild(document.createElement("br"))
+                    }
+                } 
+                catch (error) {
+                    loading.textContent = `暂时无法加载流量数据，请稍后再试。`;
+                } finally {
+                    spinner.hidden = true;
+                }
+                
+            }
+
+            getStats();
+        </script>
+        <script src="traffic/traffic.js"></script>
+    </body>
+</html>
