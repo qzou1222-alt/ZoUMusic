@@ -14,12 +14,23 @@
                 color: white;
                 text-decoration-color: white;
             }
+            .graytext {
+                color: gray;
+            }
+            .info {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+            .info p {
+                margin: 0;
+            }
         </style>
     </head>
     <body>
         <h1>个性化设置</h1>
-        <h2>主题背景模式</h2>
         <form action="process.html">
+            <h2>主题背景模式</h2>
             <input type="radio" id="bgmode-bright" name="bgmode" value="bright" checked>
             <label for="bgmode-bright">亮色模式</label>
             <input type="radio" id="bgmode-dark" name="bgmode" value="dark">
@@ -27,6 +38,21 @@
             <br><br>
             <h3>预览</h3>
             <img id="prv-bgmode">
+            <h2>性能设置</h2>
+            <h3>视频性能</h3>
+            <h4>预加载</h4>
+            <input type="radio" id="video-preload-auto" name="video-preload" value="auto" checked>
+            <label for="video-preload-auto">预加载视频和元数据</label>
+            <p class="graytext">在网页加载时加载视频和元数据。这会让网页加载时间变久。</p>
+            <div class="info">
+                <input type="radio" id="video-preload-metadata" name="video-preload" value="metadata">
+                <label for="video-preload-metadata">预加载元数据</label>
+                <p class="graytext">（推荐）</p>
+            </div>
+            <p class="graytext">在网页加载时只加载元数据。</p>
+            <input type="radio" id="video-preload-none" name="video-preload" value="none">
+            <label for="video-preload-none">禁用预加载</label>
+            <p class="graytext">在网页加载时不加载任何视频数据。这会让视频加载时间变久。</p>
             <br><br><br>
             <button type="submit">完成</button>
         </form>
@@ -47,6 +73,11 @@
                 }
                 
             }
+            class VideoPreview{
+                static auto = document.getElementById("video-preload-auto")
+                static metadata = document.getElementById("video-preload-metadata")
+                static none = document.getElementById("video-preload-none")
+            }
             if (localStorage.getItem("bgmode")=="dark") {
                 Bgmode.dark.checked=true
                 Bgmode.bright.checked=false
@@ -55,6 +86,16 @@
                     text.classList.add("brighttext")
                 }
                 
+            }
+            if (localStorage.getItem("video-preview")=="metadata") {
+                VideoPreview.auto.checked=false
+                VideoPreview.metadata.checked=true
+                VideoPreview.none.checked=false
+            }
+            if (localStorage.getItem("video-preview")=="none") {
+                VideoPreview.auto.checked=false
+                VideoPreview.metadata.checked=false
+                VideoPreview.none.checked=true
             }
             Bgmode.previewCheck()
             Bgmode.bright.addEventListener("change", function(ev){

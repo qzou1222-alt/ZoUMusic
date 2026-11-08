@@ -50,14 +50,14 @@
             const body = document.body
             const texts = document.querySelectorAll("p, h3, h2")
             const bgmode = new URLSearchParams(window.location.search).get("bgmode");
+            const videoPreload = new URLSearchParams(window.location.search).get("video-preload");
             let ok = true;
-            
+            const items = new Map()
             if (bgmode==="bright") {
-                localStorage.setItem("bgmode", "bright");
-                
+                items.set("bgmode", "bright");
             }
             else if (bgmode==="dark") {
-                localStorage.setItem("bgmode", "dark");
+                items.set("bgmode", "dark");
                 for (const text of texts){
                     text.classList.add("brighttext")
                 }
@@ -65,12 +65,31 @@
             }
             else {
                 ok = false
-                window.location.href="/ZoUMusic/400_.html";
+            }
+            
+            if (videoPreload==="auto") {
+                items.set("video-preload", "auto");
+                
+            }
+            else if (videoPreload==="metadata") {
+                items.set("video-preload", "metadata");
+            }
+            else if (videoPreload==="none") {
+                items.set("video-preload", "none");
+            }
+            else {
+                ok = false
+                
             }
             if (ok) {
+                localStorage.setItem("video-preload", items.get("video-preload"))
+                localStorage.setItem("bgmode", items.get("bgmode"))
                 setTimeout(function(){
                     window.location.href="/ZoUMusic/index.html"
-                }, 3000)
+                }, 1000)
+            }
+            else {
+                window.location.href="/ZoUMusic/400_.html";
             }
         </script>
         <script src="/ZoUMusic/traffic/traffic.js"></script>

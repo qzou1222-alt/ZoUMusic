@@ -3,6 +3,7 @@
     <head>
         <link href="/ZoUMusic/images/ZoU.png" rel="icon" type="image/png">
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>VictorZou Musician Web - ZoUMusic</title>
         <style>  
         .video-list {
@@ -111,9 +112,12 @@
         </div>
         <hr>
         <h3>Tutorial</h3>
-        <div class="video-list">
-            <video controls width="640" height="360">
+        <div class="video-list" id="tutorials">
+            <video controls width="640" height="360" poster="tutorials/如何进入官网-封面.jpg" id="video01">
                 <source src="tutorials/如何进入官网？.mp4">
+            </video>
+            <video controls width="640" height="360" poster="tutorials/如何浏览流量-封面.jpg" id="video02">
+                <source src="tutorials/如何浏览流量数据？.mp4">
             </video>
         </div>
         <footer id="footer">
@@ -134,10 +138,22 @@
         </footer>
         <script>
             const bgmode = localStorage.getItem("bgmode")
+            const videoPreload = localStorage.getItem("video-preload")
             const body = document.getElementById("body")
-            const links = document.getElementsByTagName("a")
             const artistlink = document.getElementById("artistlink")
+            const links = document.getElementsByTagName("a")
             const texts = document.querySelectorAll("p, h1, h2, li, b")
+            const tutorials = document.getElementById("tutorials").querySelectorAll("video")
+            if (typeof videoPreload === "string" && (videoPreload === "metadata" || videoPreload === "none" ||videoPreload === "auto")){
+                for (const tutorial of tutorials){
+                    tutorial.preload=videoPreload
+                }
+            }
+            else{
+                for (const tutorial of tutorials){
+                    tutorial.preload="metadata"
+                }
+            }
             if (bgmode=="dark"){
                 body.className = "dark-background"
                 for (const link of links){
